@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetUsuarios;
+use App\Http\Controllers\PostUsuarios;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,4 @@ use App\Http\Controllers\GetUsuarios;
 */
 
 Route::get('/usuarios', [GetUsuarios::class, 'GetUsuarios']);
+Route::post('/usuarios', [PostUsuarios::class, 'PostUsuarios']);
