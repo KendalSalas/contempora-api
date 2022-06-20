@@ -1,64 +1,189 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+> # API Contempora
+> ## Pasos previos
+> ### Instalando las dependencias
+> Antes de iniciar, debemos descargar (o actualizar) las dependencias de laravel correspondientes con el siguiente comando
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<pre>
+    <code>
+        composer install
+    </code>
+</pre>
 
-## About Laravel
+> + Nota: Puede pedir actualizaciones, por lo cual deberemos utilizar el siguiente comando
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<pre>
+    <code>
+        composer update
+    </code>
+</pre>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> ### Crear/copiar archivo .env
+> Luego, deberemos crear el archivo .env, en este caso podemos copiarlo desde el archivo .env.example hacía la carpeta raíz del proyecto (podemos buscar directamente el archivo .env.example con ctrl+p y el nombre del archivo, para copiar su contenido y luego crear el archivo .env en la raíz).
+> 
+> Con el archivo .env creado, deberemos generar una clave para el, utilizaremos este comando
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<pre>
+    <code>
+        php artisan key:generate
+    </code>
+</pre>
 
-## Learning Laravel
+> ### Levantando el servidor
+> Con todos los pasos previos hechos, primero lanzaremos el comando siguiente para refrescar los datos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<pre>
+    <code>
+        php artisan optimize 
+    </code>
+</pre>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+> Finalmente, utilizaremos este comando para levantar nuestro servidor
 
-## Laravel Sponsors
+<pre>
+    <code>
+        php artisan serve
+    </code>
+</pre>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+> + Nota: La url base será la que nos muestre la terminal,
+> + Ej => Starting Laravel development server: http://127.0.0.1:8000 (url base)
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+> # Consultas API
+> ## GET /usuarios
+> 
+> Para obtener el listado de los usuarios, utilizar endpoint 
+> 
+<pre>
+    <code>
+        GET /usuarios
+    </code>
+</pre>
 
-## Contributing
+> Ej: url_base/usuarios
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> ## GET /usuarios?nombre={nombre}
+> Para obtener los usuarios filtrados por nombre, utilizar endpoint
 
-## Code of Conduct
+<pre>
+    <code>
+        GET /usuarios?nombre={nombre}
+    </code>
+</pre>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> Ej: url_base/usuarios?nombre=Ambar 
+> + En caso de ir en blanco, se hará una consulta sin filtro
+> + Si no se encuentra el nombre, devolverá un mensaje indicando que no hubo resultados para ese valor
 
-## Security Vulnerabilities
+> ## GET usuarios?email={email}
+> Para obtener los usuarios filtrados por email, utilizar endpoint
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<pre>
+    <code>
+        GET /usuarios?email={email}
+    </code>
+</pre>
 
-## License
+> Ej: url_base/usuarios?email=devvrat_marar@friesen.biz
+> + En caso de ir en blanco, se hará una consulta sin filtro
+> + Si no se encuentra el email, devolverá un mensaje indicando que no hubo resultados para ese valor
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> ## GET /usuarios?activos={true/false}
+> Para obtener los usuarios filtrados por su estado activo, utilizar endpoint
+> 
+<pre>
+    <code>
+        GET /usuarios?activos={true/false}
+    </code>
+</pre>
+
+> Ej: url_base/usuarios?activos=true
+> + Solo se aceptan como valores validos true y false (puede ser en mayusculas o minusculas), en caso de enviar un valor distinto a esos dos, se retornará un mensaje de error
+
+> ## POST /usuarios
+> Para crear un usuario, se debe enviar un JSON con los datos del usuario a crear al siguiente endpoint
+<pre>
+    <code>
+        POST /usuarios
+    </code>
+</pre>
+> + Si se creó con éxito, recibirá un mensaje con código 201 y el JSON del usuario creado
+
+> Formato JSON
+
+<pre>
+    <code>
+        {
+            "nombre":"nombre",
+            "email": "email",
+            "genero": "male/female",
+            "activo": true/false
+        }
+    </code>
+</pre>
+
+> + nombre: String con el nombre del usuario (No puede ir en blanco, en caso de no cumplir, retornará un mensaje de error)
+> + email: String con el email del usuario (No puede ir en blanco y debe ser único, en caso de repetirse, retornará un mensaje de error)
+> + genero: String con el genero del usuario (Solo puede ser male/female y no puede ir en blanco, en caso de no cumplir, retornará un mensaje de error)
+> + activo: Boolean con el estado del usuario (Solo puede ser true/false, sin comillas, en caso de no cumplir, retornará un mensaje de error)
+
+> ## PUT /usuarios/{id}
+> Para actualizar un usuario en base a su ID, se debe enviar un JSON con los datos a actualizar al siguiente endpoint
+
+<pre>
+    <code>
+        PUT /usuarios/{id}
+    </code>
+</pre>
+
+> + En caso de que no se encuentre un usuario con ese ID, se retornará un mensaje de error 
+
+> Formato JSON
+
+<pre>
+    <code>
+        {
+            "nombre":"nombre",
+            "email": "email",
+            "genero": "male/female",
+            "activo": true/false
+        }
+    </code>
+</pre>
+
+> + nombre: String con el nombre del usuario (No puede ir en blanco, en caso de no cumplir, retornará un mensaje de error)
+> + email: String con el email del usuario (No puede ir en blanco y debe ser único, en caso de repetirse, retornará un mensaje de error)
+> + genero: String con el genero del usuario (Solo puede ser male/female y no puede ir en blanco, en caso de no cumplir, retornará un mensaje de error)
+> + activo: Boolean con el estado del usuario (Solo puede ser true/false, sin comillas, en caso de no cumplir, retornará un mensaje de error)
+
+> ## PUT /usuarios?email{email}
+> Para actualizar un usuario en base a su email, se debe enviar un JSON con los datos a actualizar al siguiente endpoint
+
+<pre>
+    <code>
+        PUT /usuarios?email{email}
+    </code>
+</pre>
+
+> + En caso de que no se encuentre un usuario con ese email, se retornará un mensaje de error 
+
+> Formato JSON
+
+<pre>
+    <code>
+        {
+            "nombre":"nombre",
+            "email": "email",
+            "genero": "male/female",
+            "activo": true/false
+        }
+    </code>
+</pre>
+
+> + nombre: String con el nombre del usuario (No puede ir en blanco, en caso de no cumplir, retornará un mensaje de error)
+> + email: String con el email del usuario (No puede ir en blanco y debe ser único, en caso de repetirse, retornará un mensaje de error)
+> + genero: String con el genero del usuario (Solo puede ser male/female y no puede ir en blanco, en caso de no cumplir, retornará un mensaje de error)
+> + activo: Boolean con el estado del usuario (Solo puede ser true/false, sin comillas, en caso de no cumplir, retornará un mensaje de error)
+
+
+
